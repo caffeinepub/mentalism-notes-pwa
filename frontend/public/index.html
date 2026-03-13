@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Notes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#fafaf8" />
+  <title>Notes</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="topbar">
+      <span id="note-title">Notes</span>
+      <span id="menu-btn" data-ocid="menu.button">&#8230;</span>
+    </div>
+    <textarea id="note-area" data-ocid="note.textarea" placeholder="Start typing your note…" spellcheck="true"></textarea>
+  </div>
+
+  <!-- Word list overlay -->
+  <div id="word-overlay" class="hidden">
+    <div id="word-list"></div>
+  </div>
+
+  <!-- Settings panel -->
+  <div id="settings-overlay" class="hidden">
+    <div id="settings-panel" data-ocid="settings.panel">
+      <div id="settings-header">
+        <span id="settings-back" class="hidden" data-ocid="settings.back.button">&#8249; Back</span>
+        <span id="settings-title">Categories</span>
+        <span id="settings-close" data-ocid="settings.close.button">Done</span>
+      </div>
+      <div id="settings-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>

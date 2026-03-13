@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Notes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#000000" />
+  <title>Notes</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top bar -->
+    <div id="topbar">
+      <button id="back-btn" class="topbar-btn" data-ocid="nav.back.button">
+        <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+          <path d="M10 2L2 10L10 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div id="topbar-right">
+        <button class="topbar-btn icon-btn" id="share-btn" data-ocid="nav.share.button">
+          <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
+            <path d="M9 1v13M4 5l5-4 5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 11v8a1 1 0 001 1h14a1 1 0 001-1v-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button id="menu-btn" class="topbar-pill" data-ocid="menu.button">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Date stamp -->
+    <div id="note-date"></div>
+
+    <!-- Note content -->
+    <div id="note-area" data-ocid="note.editor" contenteditable="true" spellcheck="true" data-placeholder="Start typing…"></div>
+
+    <!-- Bottom toolbar -->
+    <div id="bottombar">
+      <div id="toolbar-pill">
+        <!-- Checklist -->
+        <button class="toolbar-icon-btn" data-ocid="toolbar.checklist.button">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="5" cy="6" r="2" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="5" cy="16" r="2" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="10" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="10" y1="16" x2="21" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <!-- Attachment -->
+        <button class="toolbar-icon-btn" data-ocid="toolbar.attachment.button">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M19 10.5L10.5 19a5 5 0 01-7.07-7.07l9.19-9.19a3 3 0 014.24 4.24L7.68 16.17a1 1 0 01-1.41-1.41L14.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <!-- Markup -->
+        <button class="toolbar-icon-btn" data-ocid="toolbar.markup.button">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M8 14l1.5-4.5L11 13l1.5-4.5L14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <button id="compose-btn" data-ocid="toolbar.compose.button">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M16 3l3 3-11 11H5v-3L16 3z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Word list overlay -->
+  <div id="word-overlay" class="hidden">
+    <div id="word-list"></div>
+  </div>
+
+  <!-- Settings panel -->
+  <div id="settings-overlay" class="hidden">
+    <div id="settings-panel" data-ocid="settings.panel">
+      <div id="settings-header">
+        <span id="settings-back" class="hidden" data-ocid="settings.back.button">&#8249; Back</span>
+        <span id="settings-title">Categories</span>
+        <span id="settings-close" data-ocid="settings.close.button">Done</span>
+      </div>
+      <div id="settings-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
